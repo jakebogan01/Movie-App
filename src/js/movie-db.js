@@ -40,14 +40,10 @@ let runSearch = (keyword) => {
     fetch(url)
         .then(result => result.json())
         .then((data) => {
-            let movies;
-            foreach(data as movies) {
-                //process the returned data
-                // JSON.stringify(data, null, 4)
-                document.getElementById('output').innerHTML = data.results[i].title;
-                //work with results array...
-            }
-
+            //process the returned data
+            // JSON.stringify(data, null, 4)
+            document.getElementById('output').innerHTML = data.results[0].title;
+            //work with results array...
         })
 }
 
