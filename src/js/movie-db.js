@@ -6,7 +6,7 @@
  https://api.themoviedb.org/3/search/movie?api_key=<APIKEY>&query=<keyword>
 
  3. To fetch more details about a movie
- https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>
+ https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>508943
  *************/
 
 const APIKEY = '0497a560599e4b1196149db7ecbc29bb'; //TMDB api key
@@ -36,12 +36,22 @@ let getMovies = (images) => {
             console.log('images:', images);
             console.log('data:', data);
             let titles = "";
-            for(let i = 0; i < data.results.length; i++){
-                let li = document.createElement("LI");
-                li.innerHTML = `<li>${data.results[i].title}</li>`;
-                document.querySelector(".output").appendChild(li);
-            }
+            // for(let i = 0; i < data.results.length; i++){
+            //     let li = document.createElement("LI");
+            //     li.innerHTML = `<li>${data.results[i].title}</li>`;
+            //     document.querySelector(".output").appendChild(li);
+            // }
+            getMainMovie();
         })
 }
 
-// document.addEventListener('DOMContentLoaded', getConfig);
+let getMainMovie = () => {
+    let url = ''.concat(baseURL, 'movie/508943?api_key=', APIKEY);
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.log('luca:', data);
+        })
+}
+
+document.addEventListener('DOMContentLoaded', getConfig);
