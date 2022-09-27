@@ -2,9 +2,11 @@
     "/dist/app.js": "/dist/app.js",
     "/dist/app.css": "/dist/app.css",
     "/dist/img/apple-touch-icon.png": "/dist/img/apple-touch-icon.png",
+    "/dist/img/content/luca.png": "/dist/img/content/luca.png",
     "/dist/img/favicon-16x16.png": "/dist/img/favicon-16x16.png",
     "/dist/img/favicon-32x32.png": "/dist/img/favicon-32x32.png",
     "/dist/img/fb-og-image.png": "/dist/img/fb-og-image.png",
     "/dist/js/app.js": "/dist/js/app.js",
+    "/dist/js/movie-db.js": "/dist/js/movie-db.js",
     "/index.html": "/index.html"
 }

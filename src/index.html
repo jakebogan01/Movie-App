@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link href="/dist/app.css" rel="stylesheet">
-    <script src="/src/js/app.js" defer></script>
+    <script src="/dist/app.js" defer></script>
     <script src="/src/js/movie-db.js" defer></script>
     <style>
         /*[x-cloak] {*/
@@ -53,14 +53,145 @@
         /*    -ms-user-select: none;*/
         /*    user-select: none;*/
         /*}*/
+        .featured-movie {
+            background-image: url("/src/img/content/luca.png");
+        }
+        .project-carousel {
+            -ms-overflow-style: none; /* Edge, Internet Explorer */
+            scrollbar-width: none; /* Firefox */
+            overflow-y: scroll;
+        }
+        .project-carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-[#30385A]">
-<!--    <img src="https://image.tmdb.org/t/p/w500/8tABCBpzu3mZbzMB3sRzMEHEvJi.jpg" alt="Jaws"/>-->
     <main>
-        <div class="border border-red-500">
-            <img src="/src/img/content/luca.png" alt="">
+        <div class="featured-movie relative bg-no-repeat bg-center bg-cover">
+            <img src="/src/img/content/luca.png" alt="Luca" class="hidden absolute top-0 left-0 right-0 bottom-0 w-full">
+            <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black bg-opacity-30 z-10"></div>
+            <div class="relative p-5 text-white z-20">
+                <img src="https://lumiere-a.akamaihd.net/v1/images/image_2b9e98c7.png" alt="Luca Title" class="w-[5rem]">
+                <div class="flex space-x-3 mt-2">
+                    <span class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DEDE50" class="w-4 h-4"><path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" /></svg>
+                        87%
+                    </span>
+                    <span>91min</span>
+                    <span>(2021)</span>
+                </div>
+                <p class="font-semibold my-2">Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera. But all the fun is threatened by a deeply-held secret: they are sea monsters from another world just below the water’s surface.</p>
+                <button type="button" class="flex items-center mt-5">
+                    <span class="flex justify-center items-center w-[2.5rem] h-[2.5rem] rounded-full" style="background-image: linear-gradient(to bottom right, #71E3CB 20%, #D22FE9);">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 ml-1"><path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>
+                    </span>
+                    <span class="ml-2 text-xl font-semibold">Play</span>
+                </button>
+            </div>
+        </div>
+        <div>
+            <section class="border-2 border-green-500">
+                <div
+                        x-data="{
+                            skip: 3,
+                            atBeginning: false,
+                            atEnd: false,
+                            next() {
+                                this.to((current, offset) => current + (offset * this.skip))
+                            },
+                            prev() {
+                                this.to((current, offset) => current - (offset * this.skip))
+                            },
+                            to(strategy) {
+                                let slider = this.$refs.slider
+                                let current = slider.scrollLeft
+                                let offset = slider.firstElementChild.getBoundingClientRect().width
+                                slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                            },
+                            focusableWhenVisible: {
+                                'x-intersect:enter'() {
+                                    this.$el.removeAttribute('tabindex')
+                                },
+                                'x-intersect:leave'() {
+                                    this.$el.setAttribute('tabindex', '-1')
+                                }
+                            },
+                            disableNextAndPreviousButtons: {
+                                'x-intersect:enter.threshold.05'() {
+                                    let slideEls = this.$el.parentElement.children
+
+                                    // If this is the first slide.
+                                    if (slideEls[0] === this.$el) {
+                                        this.atBeginning = true
+                                    // If this is the last slide.
+                                    } else if (slideEls[slideEls.length-1] === this.$el) {
+                                        this.atEnd = true
+                                    }
+                                },
+                                'x-intersect:leave.threshold.05'() {
+                                    let slideEls = this.$el.parentElement.children
+                                    // If this is the first slide.
+                                    if (slideEls[0] === this.$el) {
+                                        this.atBeginning = false
+                                    // If this is the last slide.
+                                    } else if (slideEls[slideEls.length-1] === this.$el) {
+                                        this.atEnd = false
+                                    }
+                                }
+                            }
+                        }"
+                        class="flex w-full flex-col">
+                    <div
+                            x-on:keydown.right="next"
+                            x-on:keydown.left="prev"
+                            tabindex="0"
+                            role="region"
+                            aria-labelledby="carousel-label"
+                            class="relative flex">
+                        <h2 id="carousel-label" class="sr-only" hidden>Popular</h2>
+                        <!-- Prev Button -->
+                        <button
+                                x-on:click="prev"
+                                class="absolute text-6xl"
+                                :aria-disabled="atBeginning"
+                                :tabindex="atEnd ? -1 : 0"
+                                :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                            <span aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                            </span>
+                            <span class="sr-only">Skip to previous slide page</span>
+                        </button>
+
+                        <span id="carousel-content-label" class="sr-only" hidden>Popular</span>
+
+                        <ul
+                                x-ref="slider"
+                                tabindex="0"
+                                role="listbox"
+                                aria-labelledby="carousel-content-label"
+                                class="project-carousel popular-movies border-2 border-red-500 project-carousel popular-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+
+                        <!-- Next Button -->
+                        <button
+                                x-on:click="next"
+                                class="absolute right-0 text-6xl"
+                                :aria-disabled="atEnd"
+                                :tabindex="atEnd ? -1 : 0"
+                                :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                            <span aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </span>
+                            <span class="sr-only">Skip to next slide page</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section></section>
+            <section></section>
         </div>
     </main>
+    <footer>
+    </footer>
 </body>
 </html>

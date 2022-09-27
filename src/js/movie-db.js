@@ -14,6 +14,7 @@ let baseURL = 'https://api.themoviedb.org/3/';
 let configData = null;
 let baseImageURL = null;
 
+//grab base image
 let getConfig = () => {
     let url = "".concat(baseURL, 'configuration?api_key=', APIKEY);
     fetch(url)
@@ -21,37 +22,66 @@ let getConfig = () => {
         .then((data) => {
             baseImageURL = data.images.secure_base_url;
             configData = data.images;
-            getMovies(data);
+            console.log('images:', data);
+            getPopularMovies(data);
         })
         .catch(function (err) {
             alert(err);
         });
 }
 
-let getMovies = (images) => {
+//grab list of popular movies
+let getPopularMovies = (images) => {
     let url = ''.concat(baseURL, 'movie/popular?api_key=', APIKEY, '&language=en-US');
     fetch(url)
         .then(result => result.json())
         .then((data) => {
-            console.log('images:', images);
             console.log('data:', data);
             let titles = "";
-            // for(let i = 0; i < data.results.length; i++){
-            //     let li = document.createElement("LI");
-            //     li.innerHTML = `<li>${data.results[i].title}</li>`;
-            //     document.querySelector(".output").appendChild(li);
-            // }
-            getMainMovie();
-        })
+            for(let i = 0; i < data.results.length; i++){
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
+                        Do Something
+                    </button>`;
+                document.querySelector(".popular-movies").appendChild(li);
+            }
+        });
 }
 
-let getMainMovie = () => {
-    let url = ''.concat(baseURL, 'movie/508943?api_key=', APIKEY);
+//grab list of popular movies
+let getComedyMovies = (images) => {
+    // https://api.themoviedb.org/3/discover/movie?api_key=0497a560599e4b1196149db7ecbc29bb&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28&without_genres=18%2C27&with_watch_monetization_types=flatrate
+    let url = ''.concat(baseURL, 'discover/movie/popular?api_key=', APIKEY, '&language=en-US');
     fetch(url)
         .then(result => result.json())
         .then((data) => {
-            console.log('luca:', data);
-        })
+            console.log('data:', data);
+            let titles = "";
+            for(let i = 0; i < data.results.length; i++){
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
+                        Do Something
+                    </button>`;
+                document.querySelector(".popular-movies").appendChild(li);
+            }
+        });
 }
+
 
 document.addEventListener('DOMContentLoaded', getConfig);
