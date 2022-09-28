@@ -66,10 +66,20 @@
             background-image: linear-gradient(rgba(48,56,90,0), rgba(48,56,90,0.9), #30385A);
             z-index: 20;
         }
-        @media (min-width: 570px) {
-            .featured-movie {
-                background: #30385A;
-            }
+        .side-nav {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+            background-color: rgba(0, 0, 0, 0.4);
+            -webkit-backdrop-filter: blur(5px);
+            -moz-backdrop-filter: blur(5px);
+            -ms-backdrop-filter: blur(5px);
+            -o-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            z-index: 100;
         }
         .project-carousel {
             -ms-overflow-style: none; /* Edge, Internet Explorer */
@@ -79,17 +89,27 @@
         .project-carousel::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
         }
+        @media (min-width: 570px) {
+            .featured-movie {
+                background: #30385A;
+            }
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-[#30385A]">
-    <main>
+    <main class="relative mx-auto max-w-[128rem]">
+        <aside class="side-nav hidden lg:block"></aside>
         <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0">
             <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full">
             <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black bg-opacity-40 z-10"></div>
-            <div class="relative 570:absolute top-0 left-0 w-full featured-movie-title p-5 md:p-10 text-white z-30"></div>
+            <div class="relative 570:absolute top-0 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] text-white z-30"></div>
+            <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Featured</h2>
         </div>
-        <div>
-            <section>
+        <div class="space-y-5 lg:space-y-12 transition-all duration-300">
+            <section class="relative md:pl-7 transition-all duration-300">
+                <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Popular</h2>
                 <div
                         x-data="{
                             skip: 3,
@@ -139,7 +159,7 @@
                             }
                         }"
                         class="flex w-full flex-col">
-                    <h2 class="px-3 mt-5 text-white font-medium text-xl">Popular</h2>
+                    <h2 class="lg:hidden px-3 mt-5 text-white font-medium text-xl sm:text-2xl transition-all duration-300">Popular</h2>
                     <div
                             x-on:keydown.right="next"
                             x-on:keydown.left="prev"
@@ -168,7 +188,7 @@
                                 tabindex="0"
                                 role="listbox"
                                 aria-labelledby="carousel-content-label"
-                                class="project-carousel popular-movies h-[13.875rem] flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                class="project-carousel popular-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
 
                         <!-- Next Button -->
                         <button
@@ -185,7 +205,10 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section class="relative md:pl-7 transition-all duration-300">
+                <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Comedy</h2>
                 <div
                         x-data="{
                             skip: 3,
@@ -235,7 +258,7 @@
                             }
                         }"
                         class="flex w-full flex-col">
-                    <h2 class="px-3 mt-10 text-white font-medium text-xl">Comedy</h2>
+                    <h2 class="lg:hidden px-3 text-white font-medium text-xl sm:text-2xl transition-all duration-300">Comedy</h2>
                     <div
                             x-on:keydown.right="next"
                             x-on:keydown.left="prev"
@@ -264,7 +287,7 @@
                                 tabindex="0"
                                 role="listbox"
                                 aria-labelledby="carousel-content-label"
-                                class="project-carousel comedy-movies h-[13.875rem] flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                class="project-carousel comedy-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
 
                         <!-- Next Button -->
                         <button
@@ -281,7 +304,10 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section class="relative md:pl-7 transition-all duration-300">
+                <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Science <br>Fiction</h2>
                 <div
                         x-data="{
                             skip: 3,
@@ -331,7 +357,7 @@
                             }
                         }"
                         class="flex w-full flex-col">
-                    <h2 class="px-3 mt-10 text-white font-medium text-xl">Science Fiction</h2>
+                    <h2 class="lg:hidden px-3 text-white font-medium text-xl sm:text-2xl transition-all duration-300">Science Fiction</h2>
                     <div
                             x-on:keydown.right="next"
                             x-on:keydown.left="prev"
@@ -360,7 +386,7 @@
                                 tabindex="0"
                                 role="listbox"
                                 aria-labelledby="carousel-content-label"
-                                class="project-carousel science-fiction-movies h-[13.875rem] flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                class="project-carousel science-fiction-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
 
                         <!-- Next Button -->
                         <button
@@ -377,7 +403,10 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section class="relative md:pl-7 transition-all duration-300">
+                <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Family</h2>
                 <div
                         x-data="{
                             skip: 3,
@@ -427,7 +456,7 @@
                             }
                         }"
                         class="flex w-full flex-col">
-                    <h2 class="px-3 mt-10 text-white font-medium text-xl">Family</h2>
+                    <h2 class="lg:hidden px-3 text-white font-medium text-xl sm:text-2xl transition-all duration-300">Family</h2>
                     <div
                             x-on:keydown.right="next"
                             x-on:keydown.left="prev"
@@ -456,7 +485,7 @@
                                 tabindex="0"
                                 role="listbox"
                                 aria-labelledby="carousel-content-label"
-                                class="project-carousel family-movies h-[13.875rem] flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                class="project-carousel family-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
 
                         <!-- Next Button -->
                         <button
@@ -473,7 +502,10 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section class="relative md:pl-7 transition-all duration-300">
+                <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Adventure</h2>
                 <div
                         x-data="{
                             skip: 3,
@@ -523,7 +555,7 @@
                             }
                         }"
                         class="flex w-full flex-col">
-                    <h2 class="px-3 mt-10 text-white font-medium text-xl">Adventure</h2>
+                    <h2 class="lg:hidden px-3 text-white font-medium text-xl sm:text-2xl transition-all duration-300">Adventure</h2>
                     <div
                             x-on:keydown.right="next"
                             x-on:keydown.left="prev"
@@ -552,7 +584,7 @@
                                 tabindex="0"
                                 role="listbox"
                                 aria-labelledby="carousel-content-label"
-                                class="project-carousel adventure-movies h-[13.875rem] flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                class="project-carousel adventure-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
 
                         <!-- Next Button -->
                         <button
@@ -569,7 +601,10 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section class="relative md:pl-7 transition-all duration-300">
+                <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
+                <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Horror</h2>
                 <div
                         x-data="{
                             skip: 3,
@@ -619,7 +654,7 @@
                             }
                         }"
                         class="flex w-full flex-col">
-                    <h2 class="px-3 mt-10 text-white font-medium text-xl">Horror</h2>
+                    <h2 class="lg:hidden px-3 text-white font-medium text-xl sm:text-2xl transition-all duration-300">Horror</h2>
                     <div
                             x-on:keydown.right="next"
                             x-on:keydown.left="prev"
@@ -648,7 +683,7 @@
                                 tabindex="0"
                                 role="listbox"
                                 aria-labelledby="carousel-content-label"
-                                class="project-carousel horror-movies h-[13.875rem] flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                class="project-carousel horror-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
 
                         <!-- Next Button -->
                         <button

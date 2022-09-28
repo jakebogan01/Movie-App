@@ -48,8 +48,8 @@ let getFeaturedMovie = (id) => {
                 let releaseDate = data.release_date;
                 let newDate = releaseDate.slice(0, 4);
                 div.innerHTML =
-                    `<img src="https://lumiere-a.akamaihd.net/v1/images/image_2b9e98c7.png" alt="Luca Title" class="w-20 md:w-[6rem]">
-                    <div class="flex space-x-3 mt-2">
+                    `<img src="https://lumiere-a.akamaihd.net/v1/images/image_2b9e98c7.png" alt="Luca Title" class="w-20 md:w-[6rem] xl:w-[10rem] transition-all duration-300">
+                    <div class="flex space-x-3 mt-2 xl:mt-3 transition-all duration-300">
                         <span class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DEDE50" class="w-4 h-4"><path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" /></svg>
                             ${Math.floor(data.vote_average)}0%
@@ -58,7 +58,7 @@ let getFeaturedMovie = (id) => {
                         <span>(${newDate})</span>
                     </div>
                     <p class="font-semibold my-2 sm:text-lg lg:text-2xl max-w-[50.5625rem]">${data.overview}</p>
-                    <a href="${data.homepage}" class="flex items-center mt-5 md:mt-8" target="_blank">
+                    <a href="${data.homepage}" class="inline-flex items-center mt-5 md:mt-8" target="_blank">
                         <span class="flex justify-center items-center w-[2.5rem] h-[2.5rem] md:w-[3rem] md:h-[3rem] rounded-full" style="background-image: linear-gradient(to bottom right, #71E3CB 20%, #D22FE9);">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 ml-1"><path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>
                         </span>
@@ -80,7 +80,7 @@ let getPopularMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
+                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
@@ -103,7 +103,7 @@ let getComedyMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
+                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
@@ -126,7 +126,7 @@ let getAdventureMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
+                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
@@ -149,7 +149,7 @@ let getFamilyMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
+                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
@@ -172,7 +172,7 @@ let getScienceFictionMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
+                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
@@ -195,7 +195,7 @@ let getHorrorMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
+                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
