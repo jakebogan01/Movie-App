@@ -48,7 +48,7 @@ let getFeaturedMovie = (id) => {
                 let releaseDate = data.release_date;
                 let newDate = releaseDate.slice(0, 4);
                 div.innerHTML =
-                    `<img src="https://lumiere-a.akamaihd.net/v1/images/image_2b9e98c7.png" alt="Luca Title" class="w-20 md:w-[6rem] xl:w-[10rem] transition-all duration-300">
+                    `<img src="https://lumiere-a.akamaihd.net/v1/images/image_2b9e98c7.png" alt="Luca Title" class="w-20 md:w-[6rem] xl:w-[12rem] transition-all duration-300">
                     <div class="flex space-x-3 mt-2 xl:mt-3 transition-all duration-300">
                         <span class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DEDE50" class="w-4 h-4"><path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" /></svg>
@@ -57,12 +57,12 @@ let getFeaturedMovie = (id) => {
                         <span>${data.runtime}min</span>
                         <span>(${newDate})</span>
                     </div>
-                    <p class="font-semibold my-2 sm:text-lg lg:text-2xl max-w-[50.5625rem]">${data.overview}</p>
+                    <p class="font-semibold my-2 sm:text-lg lg:text-2xl max-w-[50.5625rem] transition-all duration-300" style="line-height: 1.7;">${data.overview}</p>
                     <a href="${data.homepage}" class="inline-flex items-center mt-5 md:mt-8" target="_blank">
-                        <span class="flex justify-center items-center w-[2.5rem] h-[2.5rem] md:w-[3rem] md:h-[3rem] rounded-full" style="background-image: linear-gradient(to bottom right, #71E3CB 20%, #D22FE9);">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 ml-1"><path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>
+                        <span class="flex justify-center items-center w-[2.5rem] h-[2.5rem] md:w-[3rem] md:h-[3rem] lg:w-20 lg:h-20 rounded-full transition-all duration-300" style="background-image: linear-gradient(to bottom right, #71E3CB 20%, #D22FE9);">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 lg:w-[5.5rem] lg:h-[5.5rem] ml-1 lg:ml-2 transition-all duration-300"><path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>
                         </span>
-                        <span class="ml-2 text-xl font-semibold md:text-2xl">Play</span>
+                        <span class="ml-2 text-xl font-semibold md:text-2xl lg:text-[2rem] transition-all duration-300">Play</span>
                     </a>`;
                 document.querySelector(".featured-movie-title").appendChild(div);
         });
@@ -75,19 +75,20 @@ let getPopularMovies = (images) => {
         .then(result => result.json())
         .then((data) => {
             console.table('Popular Movies:', data);
-            for(let i = 0; i < data.results.length; i++){
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <h3 class="hidden">${data.results[i].title}</h3>`;
+                    `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden">${title}</h3>`;
                 document.querySelector(".popular-movies").appendChild(li);
-            }
+            })
         });
 }
 
@@ -98,19 +99,20 @@ let getComedyMovies = (images) => {
         .then(result => result.json())
         .then((data) => {
             console.table('Comedy Movies:', data);
-            for(let i = 0; i < data.results.length; i++){
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <h3 class="hidden">${data.results[i].title}</h3>`;
+                    `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden">${title}</h3>`;
                 document.querySelector(".comedy-movies").appendChild(li);
-            }
+            })
         });
 }
 
@@ -121,19 +123,20 @@ let getAdventureMovies = (images) => {
         .then(result => result.json())
         .then((data) => {
             console.table('Adventure Movies:', data);
-            for(let i = 0; i < data.results.length; i++){
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <h3 class="hidden">${data.results[i].title}</h3>`;
+                    `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden">${title}</h3>`;
                 document.querySelector(".adventure-movies").appendChild(li);
-            }
+            })
         });
 }
 
@@ -144,19 +147,20 @@ let getFamilyMovies = (images) => {
         .then(result => result.json())
         .then((data) => {
             console.table('Family Movies:', data);
-            for(let i = 0; i < data.results.length; i++){
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <h3 class="hidden">${data.results[i].title}</h3>`;
+                    `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden">${title}</h3>`;
                 document.querySelector(".family-movies").appendChild(li);
-            }
+            })
         });
 }
 
@@ -167,19 +171,20 @@ let getScienceFictionMovies = (images) => {
         .then(result => result.json())
         .then((data) => {
             console.table('Science Fiction Movies:', data);
-            for(let i = 0; i < data.results.length; i++){
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <h3 class="hidden">${data.results[i].title}</h3>`;
+                    `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden">${title}</h3>`;
                 document.querySelector(".science-fiction-movies").appendChild(li);
-            }
+            })
         });
 }
 
@@ -190,19 +195,20 @@ let getHorrorMovies = (images) => {
         .then(result => result.json())
         .then((data) => {
             console.table('Horror Movies:', data);
-            for(let i = 0; i < data.results.length; i++){
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <h3 class="hidden">${data.results[i].title}</h3>`;
+                    `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden">${title}</h3>`;
                 document.querySelector(".horror-movies").appendChild(li);
-            }
+            })
         });
 }
 

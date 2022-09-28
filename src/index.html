@@ -102,11 +102,11 @@
         <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0">
             <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full">
             <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black bg-opacity-40 z-10"></div>
-            <div class="relative 570:absolute top-0 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] text-white z-30"></div>
+            <div class="relative 570:absolute top-0 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30"></div>
             <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Featured</h2>
         </div>
         <div class="space-y-5 lg:space-y-12 transition-all duration-300">
-            <section class="relative md:pl-7 transition-all duration-300">
+            <section class="relative md:pl-7 group transition-all duration-300">
                 <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Popular</h2>
@@ -171,12 +171,12 @@
                         <!-- Prev Button -->
                         <button
                                 x-on:click="prev"
-                                class="absolute text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl left-44 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atBeginning"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                :class="{ 'invisible cursor-not-allowed': atBeginning }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
                             </span>
                             <span class="sr-only">Skip to previous slide page</span>
                         </button>
@@ -188,24 +188,26 @@
                                 tabindex="0"
                                 role="listbox"
                                 aria-labelledby="carousel-content-label"
-                                class="project-carousel popular-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                class="project-carousel popular-movies flex w-full snap-x snap-mandatory overflow-x-scroll">
+                            <li x-bind="disableNextAndPreviousButtons" class="flex max-w-0 w-0 lg:max-w-full lg:w-[11.75rem] shrink-0 snap-start flex-col items-center justify-center lg:py-2 lg:px-3 transition-all duration-300"></li>
+                        </ul>
 
                         <!-- Next Button -->
                         <button
                                 x-on:click="next"
-                                class="absolute right-0 text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl right-16 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atEnd"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                :class="{ 'invisible cursor-not-allowed': atEnd }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
                             </span>
                             <span class="sr-only">Skip to next slide page</span>
                         </button>
                     </div>
                 </div>
             </section>
-            <section class="relative md:pl-7 transition-all duration-300">
+            <section class="relative md:pl-7 group transition-all duration-300">
                 <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Comedy</h2>
@@ -270,41 +272,43 @@
                         <!-- Prev Button -->
                         <button
                                 x-on:click="prev"
-                                class="absolute text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl left-44 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atBeginning"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                :class="{ 'invisible cursor-not-allowed': atBeginning }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
                             </span>
                             <span class="sr-only">Skip to previous slide page</span>
                         </button>
 
-                        <span id="carousel-content-label-2" class="sr-only" hidden>Comdey</span>
+                        <span id="carousel-content-label-2" class="sr-only" hidden>Popular</span>
 
                         <ul
                                 x-ref="slider"
                                 tabindex="0"
                                 role="listbox"
-                                aria-labelledby="carousel-content-label"
-                                class="project-carousel comedy-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                aria-labelledby="carousel-content-label-2"
+                                class="project-carousel comedy-movies flex w-full snap-x snap-mandatory overflow-x-scroll">
+                            <li x-bind="disableNextAndPreviousButtons" class="flex max-w-0 w-0 lg:max-w-full lg:w-[11.75rem] shrink-0 snap-start flex-col items-center justify-center lg:py-2 lg:px-3 transition-all duration-300"></li>
+                        </ul>
 
                         <!-- Next Button -->
                         <button
                                 x-on:click="next"
-                                class="absolute right-0 text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl right-16 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atEnd"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                :class="{ 'invisible cursor-not-allowed': atEnd }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
                             </span>
                             <span class="sr-only">Skip to next slide page</span>
                         </button>
                     </div>
                 </div>
             </section>
-            <section class="relative md:pl-7 transition-all duration-300">
+            <section class="relative md:pl-7 group transition-all duration-300">
                 <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Science <br>Fiction</h2>
@@ -369,41 +373,43 @@
                         <!-- Prev Button -->
                         <button
                                 x-on:click="prev"
-                                class="absolute text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl left-44 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atBeginning"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                :class="{ 'invisible cursor-not-allowed': atBeginning }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
                             </span>
                             <span class="sr-only">Skip to previous slide page</span>
                         </button>
 
-                        <span id="carousel-content-label-3" class="sr-only" hidden>Science Fiction</span>
+                        <span id="carousel-content-label-3" class="sr-only" hidden>Popular</span>
 
                         <ul
                                 x-ref="slider"
                                 tabindex="0"
                                 role="listbox"
-                                aria-labelledby="carousel-content-label"
-                                class="project-carousel science-fiction-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                aria-labelledby="carousel-content-label-3"
+                                class="project-carousel science-fiction-movies flex w-full snap-x snap-mandatory overflow-x-scroll">
+                            <li x-bind="disableNextAndPreviousButtons" class="flex max-w-0 w-0 lg:max-w-full lg:w-[11.75rem] shrink-0 snap-start flex-col items-center justify-center lg:py-2 lg:px-3 transition-all duration-300"></li>
+                        </ul>
 
                         <!-- Next Button -->
                         <button
                                 x-on:click="next"
-                                class="absolute right-0 text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl right-16 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atEnd"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                :class="{ 'invisible cursor-not-allowed': atEnd }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
                             </span>
                             <span class="sr-only">Skip to next slide page</span>
                         </button>
                     </div>
                 </div>
             </section>
-            <section class="relative md:pl-7 transition-all duration-300">
+            <section class="relative md:pl-7 group transition-all duration-300">
                 <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Family</h2>
@@ -468,41 +474,43 @@
                         <!-- Prev Button -->
                         <button
                                 x-on:click="prev"
-                                class="absolute text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl left-44 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atBeginning"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                :class="{ 'invisible cursor-not-allowed': atBeginning }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
                             </span>
                             <span class="sr-only">Skip to previous slide page</span>
                         </button>
 
-                        <span id="carousel-content-label-4" class="sr-only" hidden>Family</span>
+                        <span id="carousel-content-label-4" class="sr-only" hidden>Popular</span>
 
                         <ul
                                 x-ref="slider"
                                 tabindex="0"
                                 role="listbox"
-                                aria-labelledby="carousel-content-label"
-                                class="project-carousel family-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                aria-labelledby="carousel-content-label-4"
+                                class="project-carousel family-movies flex w-full snap-x snap-mandatory overflow-x-scroll">
+                            <li x-bind="disableNextAndPreviousButtons" class="flex max-w-0 w-0 lg:max-w-full lg:w-[11.75rem] shrink-0 snap-start flex-col items-center justify-center lg:py-2 lg:px-3 transition-all duration-300"></li>
+                        </ul>
 
                         <!-- Next Button -->
                         <button
                                 x-on:click="next"
-                                class="absolute right-0 text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl right-16 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atEnd"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                :class="{ 'invisible cursor-not-allowed': atEnd }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
                             </span>
                             <span class="sr-only">Skip to next slide page</span>
                         </button>
                     </div>
                 </div>
             </section>
-            <section class="relative md:pl-7 transition-all duration-300">
+            <section class="relative md:pl-7 group transition-all duration-300">
                 <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Adventure</h2>
@@ -567,41 +575,43 @@
                         <!-- Prev Button -->
                         <button
                                 x-on:click="prev"
-                                class="absolute text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl left-44 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atBeginning"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                :class="{ 'invisible cursor-not-allowed': atBeginning }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
                             </span>
                             <span class="sr-only">Skip to previous slide page</span>
                         </button>
 
-                        <span id="carousel-content-label-5" class="sr-only" hidden>Adventure</span>
+                        <span id="carousel-content-label-5" class="sr-only" hidden>Popular</span>
 
                         <ul
                                 x-ref="slider"
                                 tabindex="0"
                                 role="listbox"
-                                aria-labelledby="carousel-content-label"
-                                class="project-carousel adventure-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                aria-labelledby="carousel-content-label-5"
+                                class="project-carousel adventure-movies flex w-full snap-x snap-mandatory overflow-x-scroll">
+                            <li x-bind="disableNextAndPreviousButtons" class="flex max-w-0 w-0 lg:max-w-full lg:w-[11.75rem] shrink-0 snap-start flex-col items-center justify-center lg:py-2 lg:px-3 transition-all duration-300"></li>
+                        </ul>
 
                         <!-- Next Button -->
                         <button
                                 x-on:click="next"
-                                class="absolute right-0 text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl right-16 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atEnd"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                :class="{ 'invisible cursor-not-allowed': atEnd }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
                             </span>
                             <span class="sr-only">Skip to next slide page</span>
                         </button>
                     </div>
                 </div>
             </section>
-            <section class="relative md:pl-7 transition-all duration-300">
+            <section class="relative md:pl-7 group transition-all duration-300">
                 <div class="absolute -left-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to left, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <div class="absolute -right-2 top-0 h-full w-0 lg:w-[6.75rem] z-20 transition-all duration-300" style="background-image: linear-gradient(to right, rgba(48, 56, 90, 0), rgba(48, 56, 90, 0.8), #30385a 100%);"></div>
                 <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Horror</h2>
@@ -666,34 +676,36 @@
                         <!-- Prev Button -->
                         <button
                                 x-on:click="prev"
-                                class="absolute text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl left-44 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atBeginning"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                :class="{ 'invisible cursor-not-allowed': atBeginning }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
                             </span>
                             <span class="sr-only">Skip to previous slide page</span>
                         </button>
 
-                        <span id="carousel-content-label-6" class="sr-only" hidden>Horror</span>
+                        <span id="carousel-content-label-6" class="sr-only" hidden>Popular</span>
 
                         <ul
                                 x-ref="slider"
                                 tabindex="0"
                                 role="listbox"
-                                aria-labelledby="carousel-content-label"
-                                class="project-carousel horror-movies flex w-full snap-x snap-mandatory overflow-x-scroll"></ul>
+                                aria-labelledby="carousel-content-label-6"
+                                class="project-carousel horror-movies flex w-full snap-x snap-mandatory overflow-x-scroll">
+                            <li x-bind="disableNextAndPreviousButtons" class="flex max-w-0 w-0 lg:max-w-full lg:w-[11.75rem] shrink-0 snap-start flex-col items-center justify-center lg:py-2 lg:px-3 transition-all duration-300"></li>
+                        </ul>
 
                         <!-- Next Button -->
                         <button
                                 x-on:click="next"
-                                class="absolute right-0 text-6xl"
+                                class="hidden lg:inline-block opacity-0 group-hover:opacity-100 absolute text-6xl right-16 top-1/2 transform -translate-y-1/2 transition-all"
                                 :aria-disabled="atEnd"
                                 :tabindex="atEnd ? -1 : 0"
-                                :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                :class="{ 'invisible cursor-not-allowed': atEnd }">
                             <span aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 2xl:h-40 2xl:w-40 text-white opacity-80 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
                             </span>
                             <span class="sr-only">Skip to next slide page</span>
                         </button>
