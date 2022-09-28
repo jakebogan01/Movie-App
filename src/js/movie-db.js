@@ -38,27 +38,33 @@ let getConfig = () => {
 }
 
 //grab featured movie
-let getFeaturedMovie = (images) => {
-    let url = ''.concat(baseURL, 'movie/popular?api_key=', APIKEY, '&language=en-US');
+let getFeaturedMovie = (id) => {
+    let url = ''.concat(baseURL, 'movie/', id, '?api_key=', APIKEY);
     fetch(url)
         .then(result => result.json())
         .then((data) => {
-            console.table('Popular Movies:', data);
-            for(let i = 0; i < data.results.length; i++){
-                let li = document.createElement("LI");
-                let bind = document.createAttribute("x-bind");
-                bind.value = "disableNextAndPreviousButtons";
-                let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
-                li.setAttributeNode(bind);
-                li.setAttributeNode(className);
-                li.innerHTML =
-                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
-                        Do Something
-                    </button>`;
-                document.querySelector(".popular-movies").appendChild(li);
-            }
+            console.table('Featured Movie:', data);
+                let div = document.createElement("DIV");
+                let releaseDate = data.release_date;
+                let newDate = releaseDate.slice(0, 4);
+                div.innerHTML =
+                    `<img src="https://lumiere-a.akamaihd.net/v1/images/image_2b9e98c7.png" alt="Luca Title" class="w-20 md:w-[6rem]">
+                    <div class="flex space-x-3 mt-2">
+                        <span class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DEDE50" class="w-4 h-4"><path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" /></svg>
+                            ${Math.floor(data.vote_average)}0%
+                        </span>
+                        <span>${data.runtime}min</span>
+                        <span>(${newDate})</span>
+                    </div>
+                    <p class="font-semibold my-2 sm:text-lg lg:text-2xl max-w-[50.5625rem]">${data.overview}</p>
+                    <a href="${data.homepage}" class="flex items-center mt-5 md:mt-8" target="_blank">
+                        <span class="flex justify-center items-center w-[2.5rem] h-[2.5rem] md:w-[3rem] md:h-[3rem] rounded-full" style="background-image: linear-gradient(to bottom right, #71E3CB 20%, #D22FE9);">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 ml-1"><path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>
+                        </span>
+                        <span class="ml-2 text-xl font-semibold md:text-2xl">Play</span>
+                    </a>`;
+                document.querySelector(".featured-movie-title").appendChild(div);
         });
 }
 
@@ -74,14 +80,12 @@ let getPopularMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
-                        Do Something
-                    </button>`;
+                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <h3 class="hidden">${data.results[i].title}</h3>`;
                 document.querySelector(".popular-movies").appendChild(li);
             }
         });
@@ -99,14 +103,12 @@ let getComedyMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
-                        Do Something
-                    </button>`;
+                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <h3 class="hidden">${data.results[i].title}</h3>`;
                 document.querySelector(".comedy-movies").appendChild(li);
             }
         });
@@ -124,14 +126,12 @@ let getAdventureMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
-                        Do Something
-                    </button>`;
+                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <h3 class="hidden">${data.results[i].title}</h3>`;
                 document.querySelector(".adventure-movies").appendChild(li);
             }
         });
@@ -149,14 +149,12 @@ let getFamilyMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
-                        Do Something
-                    </button>`;
+                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <h3 class="hidden">${data.results[i].title}</h3>`;
                 document.querySelector(".family-movies").appendChild(li);
             }
         });
@@ -174,14 +172,12 @@ let getScienceFictionMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
-                        Do Something
-                    </button>`;
+                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <h3 class="hidden">${data.results[i].title}</h3>`;
                 document.querySelector(".science-fiction-movies").appendChild(li);
             }
         });
@@ -199,14 +195,12 @@ let getHorrorMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center p-2";
+                className.value = "flex w-[9.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
-                    <button x-bind="focusableWhenVisible" class="px-4 py-2 text-sm">
-                        Do Something
-                    </button>`;
+                    `<img class="mt-2 w-full rounded" src="${images.images.secure_base_url + images.images.poster_sizes[4] + data.results[i].poster_path}" alt="${data.results[i].title}">
+                    <h3 class="hidden">${data.results[i].title}</h3>`;
                 document.querySelector(".horror-movies").appendChild(li);
             }
         });

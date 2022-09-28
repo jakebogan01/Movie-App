@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
       },
+      screens: {
+        '570': '35.625rem',
+      },
     },
   },
   plugins: [
