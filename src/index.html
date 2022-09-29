@@ -74,7 +74,7 @@
             height: 100%;
             width: 200px;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
-            background-color: rgba(0, 0, 0, 0.4);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4) 85%, rgba(0, 0, 0, 0));
             -webkit-backdrop-filter: blur(5px);
             -moz-backdrop-filter: blur(5px);
             -ms-backdrop-filter: blur(5px);
@@ -108,12 +108,12 @@
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-[#30385A]">
-    <main class="relative mx-auto max-w-[128rem]">
+    <main class="relative mx-auto max-w-[128rem] overflow-hidden">
         <aside class="side-nav hidden lg:block"></aside>
-        <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0">
-            <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full">
+        <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0 group transition-all duration-300 overflow-hidden">
+            <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full transform sm:group-hover:scale-105 transition-all duration-300">
             <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full  z-10" style="background-image: radial-gradient(rgba(48,56,90,0.2), rgba(48,56,90,0.6), rgba(48,56,90,0.9));"></div>
-            <div class="relative 570:absolute top-0 2xl:top-10 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30"></div>
+            <div class="relative 570:absolute top-0 2xl:top-10 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30 transition-all duration-300"></div>
             <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Featured</h2>
         </div>
         <div class="space-y-5 lg:space-y-12 pb-40 transition-all duration-300">
@@ -725,40 +725,42 @@
             </section>
         </div>
     </main>
-    <footer class="flex items-center justify-between relative px-5 md:px-10 py-7 md:py-10 lg:pt-20 lg:pb-10 lg:px-14 -mt-20 bg-no-repeat bg-center bg-cover transition-all duration-300">
-        <svg height="93.206" width="130.808" xmlns="http://www.w3.org/2000/svg" class="group">
-            <g fill="#fff">
-                <text class="opacity-0 group-hover:opacity-100 transition-all duration-300" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="18" font-weight="700" transform="translate(73.808 38.75)"><tspan x="0" y="0">Follow</tspan><tspan x="0" y="22">Us</tspan></text>
-                <a href="#">
-                    <g class="hover:scale-90" style="transform-origin: 40% 50%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
-                        <rect id="Rectangle_384" data-name="Rectangle 384" width="27.46" height="27.46" rx="3" transform="translate(33 29)" fill="rgba(255,255,255,0.05)"/>
-                        <path class="social_links facebook" d="M58.925 26.75h-24.75a3.375 3.375 0 00-3.375 3.375v24.75a3.375 3.375 0 003.375 3.375h9.65V47.541H39.4V42.5h4.43v-3.842c0-4.37 2.6-6.784 6.586-6.784a26.836 26.836 0 013.9.34V36.5h-2.2a2.521 2.521 0 00-2.842 2.723V42.5h4.836l-.773 5.041h-4.062V58.25h9.65a3.375 3.375 0 003.375-3.375v-24.75a3.375 3.375 0 00-3.375-3.375z"></path>
-                    </g>
-                </a>
-                <a href="#">
-                    <g class="hover:scale-90" style="transform-origin: 30% 50%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
-                        <rect id="Rectangle_385" data-name="Rectangle 385" width="29.46" height="27.46" rx="3" transform="translate(3 7)" fill="rgba(255,255,255,0.05)"/>
-                        <path class="social_links twitter" d="M33.705 0H4.045A4.046 4.046 0 000 4.045v29.66a4.046 4.046 0 004.045 4.045h29.66a4.046 4.046 0 004.045-4.045V4.045A4.046 4.046 0 0033.705 0zm-4.12 13.381c.017.236.017.48.017.716a15.616 15.616 0 01-15.724 15.724 15.651 15.651 0 01-8.485-2.477 11.643 11.643 0 001.331.067 11.08 11.08 0 006.859-2.361 5.534 5.534 0 01-5.165-3.834 5.956 5.956 0 002.494-.1 5.527 5.527 0 01-4.424-5.426v-.067a5.523 5.523 0 002.494.7 5.515 5.515 0 01-2.46-4.6 5.457 5.457 0 01.75-2.789 15.692 15.692 0 0011.392 5.78 5.538 5.538 0 019.429-5.047A10.829 10.829 0 0031.6 8.334a5.512 5.512 0 01-2.427 3.042 11 11 0 003.185-.859 11.632 11.632 0 01-2.773 2.864z"></path>
-                    </g>
-                </a>
-                <a href="#">
-                    <g class="hover:scale-90" style="transform-origin: 20% 70%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
-                        <rect id="Rectangle_383" data-name="Rectangle 383" width="27.46" height="26.46" rx="3" transform="translate(7 61)" fill="rgba(255,255,255,0.05)"/>
-                        <path class="social_links snapchat" d="M31.669 59.25H9.3a3.051 3.051 0 00-3.05 3.05v22.369a3.051 3.051 0 003.05 3.05h22.369a3.051 3.051 0 003.05-3.05V62.3a3.051 3.051 0 00-3.05-3.05zm-.413 20.011c-.222.515-1.15.89-2.847 1.157a7.809 7.809 0 00-.273 1.01.49.49 0 01-.515.375h-.013c-.394 0-.813-.184-1.64-.184a3.34 3.34 0 00-2.377.871 4.741 4.741 0 01-3.127 1.157 4.848 4.848 0 01-3.082-1.157 3.351 3.351 0 00-2.377-.871 16.2 16.2 0 00-1.64.2.5.5 0 01-.527-.381 7.978 7.978 0 00-.273-1.017c-.877-.133-2.847-.477-2.891-1.36a.45.45 0 01.375-.47c2.942-.483 4.264-3.5 4.321-3.629 0-.006.006-.013.013-.019a.95.95 0 00.1-.794c-.216-.5-1.138-.68-1.525-.839-1-.394-1.144-.852-1.08-1.163a1.087 1.087 0 011.392-.655 2.394 2.394 0 001 .267.891.891 0 00.419-.089c-.089-1.519-.3-3.686.241-4.9a5.771 5.771 0 015.344-3.451l.426-.006a5.72 5.72 0 015.357 3.451c.54 1.214.33 3.374.241 4.9a.8.8 0 00.362.089 2.507 2.507 0 00.934-.267 1.161 1.161 0 01.864 0 .884.884 0 01.661.756c.006.413-.362.769-1.093 1.055-.089.038-.2.07-.311.108-.413.133-1.042.33-1.207.731a.975.975 0 00.1.794c.006.006.006.013.013.019.057.127 1.379 3.146 4.321 3.629a.488.488 0 01.311.686z"></path>
-                    </g>
-                </a>
-                <a href="#">
-                    <g class="hover:scale-90" style="transform-origin: 50% 80%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
-                        <rect id="Rectangle_382" data-name="Rectangle 382" width="26" height="27.46" rx="3" transform="translate(47 68)" fill="rgba(255,255,255,0.05)"/>
-                        <path class="social_links linkedin" d="M72.045 65.75h-23.54a1.97 1.97 0 00-1.955 1.98v23.5a1.97 1.97 0 001.955 1.98h23.54a1.975 1.975 0 001.961-1.98v-23.5a1.975 1.975 0 00-1.961-1.98zM54.85 89.284h-4.071v-13.1h4.071v13.1zm-2.037-14.893a2.359 2.359 0 112.359-2.359 2.361 2.361 0 01-2.359 2.359zm17.289 14.893h-4.069V82.91c0-1.52-.031-3.475-2.114-3.475-2.12 0-2.445 1.655-2.445 3.365v6.484h-4.07v-13.1h3.9v1.79h.055a4.286 4.286 0 013.855-2.114c4.118 0 4.884 2.715 4.884 6.245z"></path>
-                    </g>
-                </a>
-            </g>
-        </svg>
+    <footer class="relative -mt-20 bg-no-repeat bg-center bg-cover transition-all duration-300">
+        <div class="flex items-center justify-between mx-auto max-w-[128rem] px-5 md:px-10 py-7 md:py-10 lg:pt-20 lg:pb-10 lg:px-14 transition-all duration-300">
+            <svg height="93.206" width="130.808" xmlns="http://www.w3.org/2000/svg" class="group">
+                <g fill="#fff">
+                    <text class="opacity-0 group-hover:opacity-100 transition-all duration-300" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="18" font-weight="700" transform="translate(73.808 38.75)"><tspan x="0" y="0">Follow</tspan><tspan x="0" y="22">Us</tspan></text>
+                    <a href="#">
+                        <g class="hover:scale-90" style="transform-origin: 40% 50%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
+                            <rect id="Rectangle_384" data-name="Rectangle 384" width="27.46" height="27.46" rx="3" transform="translate(33 29)" fill="rgba(255,255,255,0.05)"/>
+                            <path class="social_links facebook" d="M58.925 26.75h-24.75a3.375 3.375 0 00-3.375 3.375v24.75a3.375 3.375 0 003.375 3.375h9.65V47.541H39.4V42.5h4.43v-3.842c0-4.37 2.6-6.784 6.586-6.784a26.836 26.836 0 013.9.34V36.5h-2.2a2.521 2.521 0 00-2.842 2.723V42.5h4.836l-.773 5.041h-4.062V58.25h9.65a3.375 3.375 0 003.375-3.375v-24.75a3.375 3.375 0 00-3.375-3.375z"></path>
+                        </g>
+                    </a>
+                    <a href="#">
+                        <g class="hover:scale-90" style="transform-origin: 30% 50%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
+                            <rect id="Rectangle_385" data-name="Rectangle 385" width="29.46" height="27.46" rx="3" transform="translate(3 7)" fill="rgba(255,255,255,0.05)"/>
+                            <path class="social_links twitter" d="M33.705 0H4.045A4.046 4.046 0 000 4.045v29.66a4.046 4.046 0 004.045 4.045h29.66a4.046 4.046 0 004.045-4.045V4.045A4.046 4.046 0 0033.705 0zm-4.12 13.381c.017.236.017.48.017.716a15.616 15.616 0 01-15.724 15.724 15.651 15.651 0 01-8.485-2.477 11.643 11.643 0 001.331.067 11.08 11.08 0 006.859-2.361 5.534 5.534 0 01-5.165-3.834 5.956 5.956 0 002.494-.1 5.527 5.527 0 01-4.424-5.426v-.067a5.523 5.523 0 002.494.7 5.515 5.515 0 01-2.46-4.6 5.457 5.457 0 01.75-2.789 15.692 15.692 0 0011.392 5.78 5.538 5.538 0 019.429-5.047A10.829 10.829 0 0031.6 8.334a5.512 5.512 0 01-2.427 3.042 11 11 0 003.185-.859 11.632 11.632 0 01-2.773 2.864z"></path>
+                        </g>
+                    </a>
+                    <a href="#">
+                        <g class="hover:scale-90" style="transform-origin: 20% 70%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
+                            <rect id="Rectangle_383" data-name="Rectangle 383" width="27.46" height="26.46" rx="3" transform="translate(7 61)" fill="rgba(255,255,255,0.05)"/>
+                            <path class="social_links snapchat" d="M31.669 59.25H9.3a3.051 3.051 0 00-3.05 3.05v22.369a3.051 3.051 0 003.05 3.05h22.369a3.051 3.051 0 003.05-3.05V62.3a3.051 3.051 0 00-3.05-3.05zm-.413 20.011c-.222.515-1.15.89-2.847 1.157a7.809 7.809 0 00-.273 1.01.49.49 0 01-.515.375h-.013c-.394 0-.813-.184-1.64-.184a3.34 3.34 0 00-2.377.871 4.741 4.741 0 01-3.127 1.157 4.848 4.848 0 01-3.082-1.157 3.351 3.351 0 00-2.377-.871 16.2 16.2 0 00-1.64.2.5.5 0 01-.527-.381 7.978 7.978 0 00-.273-1.017c-.877-.133-2.847-.477-2.891-1.36a.45.45 0 01.375-.47c2.942-.483 4.264-3.5 4.321-3.629 0-.006.006-.013.013-.019a.95.95 0 00.1-.794c-.216-.5-1.138-.68-1.525-.839-1-.394-1.144-.852-1.08-1.163a1.087 1.087 0 011.392-.655 2.394 2.394 0 001 .267.891.891 0 00.419-.089c-.089-1.519-.3-3.686.241-4.9a5.771 5.771 0 015.344-3.451l.426-.006a5.72 5.72 0 015.357 3.451c.54 1.214.33 3.374.241 4.9a.8.8 0 00.362.089 2.507 2.507 0 00.934-.267 1.161 1.161 0 01.864 0 .884.884 0 01.661.756c.006.413-.362.769-1.093 1.055-.089.038-.2.07-.311.108-.413.133-1.042.33-1.207.731a.975.975 0 00.1.794c.006.006.006.013.013.019.057.127 1.379 3.146 4.321 3.629a.488.488 0 01.311.686z"></path>
+                        </g>
+                    </a>
+                    <a href="#">
+                        <g class="hover:scale-90" style="transform-origin: 50% 80%; fill: #ffffff; cursor: pointer; position: relative; transition: all 0.3s ease-in-out;">
+                            <rect id="Rectangle_382" data-name="Rectangle 382" width="26" height="27.46" rx="3" transform="translate(47 68)" fill="rgba(255,255,255,0.05)"/>
+                            <path class="social_links linkedin" d="M72.045 65.75h-23.54a1.97 1.97 0 00-1.955 1.98v23.5a1.97 1.97 0 001.955 1.98h23.54a1.975 1.975 0 001.961-1.98v-23.5a1.975 1.975 0 00-1.961-1.98zM54.85 89.284h-4.071v-13.1h4.071v13.1zm-2.037-14.893a2.359 2.359 0 112.359-2.359 2.361 2.361 0 01-2.359 2.359zm17.289 14.893h-4.069V82.91c0-1.52-.031-3.475-2.114-3.475-2.12 0-2.445 1.655-2.445 3.365v6.484h-4.07v-13.1h3.9v1.79h.055a4.286 4.286 0 013.855-2.114c4.118 0 4.884 2.715 4.884 6.245z"></path>
+                        </g>
+                    </a>
+                </g>
+            </svg>
 
-        <a href="https://www.themoviedb.org" target="_blank" class="w-[7.375rem] text-white opacity-80 sm:hover:opacity-100 transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 190.24 81.52" fill="currentColor"><defs></defs><title>Asset 2</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M105.67,36.06h66.9A17.67,17.67,0,0,0,190.24,18.4h0A17.67,17.67,0,0,0,172.57.73h-66.9A17.67,17.67,0,0,0,88,18.4h0A17.67,17.67,0,0,0,105.67,36.06Zm-88,45h76.9A17.67,17.67,0,0,0,112.24,63.4h0A17.67,17.67,0,0,0,94.57,45.73H17.67A17.67,17.67,0,0,0,0,63.4H0A17.67,17.67,0,0,0,17.67,81.06ZM10.41,35.42h7.8V6.92h10.1V0H.31v6.9h10.1Zm28.1,0h7.8V8.25h.1l9,27.15h6l9.3-27.15h.1V35.4h7.8V0H66.76l-8.2,23.1h-.1L50.31,0H38.51ZM152.43,55.67a15.07,15.07,0,0,0-4.52-5.52,18.57,18.57,0,0,0-6.68-3.08,33.54,33.54,0,0,0-8.07-1h-11.7v35.4h12.75a24.58,24.58,0,0,0,7.55-1.15A19.34,19.34,0,0,0,148.11,77a16.27,16.27,0,0,0,4.37-5.5,16.91,16.91,0,0,0,1.63-7.58A18.5,18.5,0,0,0,152.43,55.67ZM145,68.6A8.8,8.8,0,0,1,142.36,72a10.7,10.7,0,0,1-4,1.82,21.57,21.57,0,0,1-5,.55h-4.05v-21h4.6a17,17,0,0,1,4.67.63,11.66,11.66,0,0,1,3.88,1.87A9.14,9.14,0,0,1,145,59a9.87,9.87,0,0,1,1,4.52A11.89,11.89,0,0,1,145,68.6Zm44.63-.13a8,8,0,0,0-1.58-2.62A8.38,8.38,0,0,0,185.63,64a10.31,10.31,0,0,0-3.17-1v-.1a9.22,9.22,0,0,0,4.42-2.82,7.43,7.43,0,0,0,1.68-5,8.42,8.42,0,0,0-1.15-4.65,8.09,8.09,0,0,0-3-2.72,12.56,12.56,0,0,0-4.18-1.3,32.84,32.84,0,0,0-4.62-.33h-13.2v35.4h14.5a22.41,22.41,0,0,0,4.72-.5,13.53,13.53,0,0,0,4.28-1.65,9.42,9.42,0,0,0,3.1-3,8.52,8.52,0,0,0,1.2-4.68A9.39,9.39,0,0,0,189.66,68.47ZM170.21,52.72h5.3a10,10,0,0,1,1.85.18,6.18,6.18,0,0,1,1.7.57,3.39,3.39,0,0,1,1.22,1.13,3.22,3.22,0,0,1,.48,1.82,3.63,3.63,0,0,1-.43,1.8,3.4,3.4,0,0,1-1.12,1.2,4.92,4.92,0,0,1-1.58.65,7.51,7.51,0,0,1-1.77.2h-5.65Zm11.72,20a3.9,3.9,0,0,1-1.22,1.3,4.64,4.64,0,0,1-1.68.7,8.18,8.18,0,0,1-1.82.2h-7v-8h5.9a15.35,15.35,0,0,1,2,.15,8.47,8.47,0,0,1,2.05.55,4,4,0,0,1,1.57,1.18,3.11,3.11,0,0,1,.63,2A3.71,3.71,0,0,1,181.93,72.72Z"/></g></g></svg>
-        </a>
+            <a href="https://www.themoviedb.org" target="_blank" class="w-[7.375rem] text-white opacity-80 sm:hover:opacity-100 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 190.24 81.52" fill="currentColor"><defs></defs><title>Asset 2</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M105.67,36.06h66.9A17.67,17.67,0,0,0,190.24,18.4h0A17.67,17.67,0,0,0,172.57.73h-66.9A17.67,17.67,0,0,0,88,18.4h0A17.67,17.67,0,0,0,105.67,36.06Zm-88,45h76.9A17.67,17.67,0,0,0,112.24,63.4h0A17.67,17.67,0,0,0,94.57,45.73H17.67A17.67,17.67,0,0,0,0,63.4H0A17.67,17.67,0,0,0,17.67,81.06ZM10.41,35.42h7.8V6.92h10.1V0H.31v6.9h10.1Zm28.1,0h7.8V8.25h.1l9,27.15h6l9.3-27.15h.1V35.4h7.8V0H66.76l-8.2,23.1h-.1L50.31,0H38.51ZM152.43,55.67a15.07,15.07,0,0,0-4.52-5.52,18.57,18.57,0,0,0-6.68-3.08,33.54,33.54,0,0,0-8.07-1h-11.7v35.4h12.75a24.58,24.58,0,0,0,7.55-1.15A19.34,19.34,0,0,0,148.11,77a16.27,16.27,0,0,0,4.37-5.5,16.91,16.91,0,0,0,1.63-7.58A18.5,18.5,0,0,0,152.43,55.67ZM145,68.6A8.8,8.8,0,0,1,142.36,72a10.7,10.7,0,0,1-4,1.82,21.57,21.57,0,0,1-5,.55h-4.05v-21h4.6a17,17,0,0,1,4.67.63,11.66,11.66,0,0,1,3.88,1.87A9.14,9.14,0,0,1,145,59a9.87,9.87,0,0,1,1,4.52A11.89,11.89,0,0,1,145,68.6Zm44.63-.13a8,8,0,0,0-1.58-2.62A8.38,8.38,0,0,0,185.63,64a10.31,10.31,0,0,0-3.17-1v-.1a9.22,9.22,0,0,0,4.42-2.82,7.43,7.43,0,0,0,1.68-5,8.42,8.42,0,0,0-1.15-4.65,8.09,8.09,0,0,0-3-2.72,12.56,12.56,0,0,0-4.18-1.3,32.84,32.84,0,0,0-4.62-.33h-13.2v35.4h14.5a22.41,22.41,0,0,0,4.72-.5,13.53,13.53,0,0,0,4.28-1.65,9.42,9.42,0,0,0,3.1-3,8.52,8.52,0,0,0,1.2-4.68A9.39,9.39,0,0,0,189.66,68.47ZM170.21,52.72h5.3a10,10,0,0,1,1.85.18,6.18,6.18,0,0,1,1.7.57,3.39,3.39,0,0,1,1.22,1.13,3.22,3.22,0,0,1,.48,1.82,3.63,3.63,0,0,1-.43,1.8,3.4,3.4,0,0,1-1.12,1.2,4.92,4.92,0,0,1-1.58.65,7.51,7.51,0,0,1-1.77.2h-5.65Zm11.72,20a3.9,3.9,0,0,1-1.22,1.3,4.64,4.64,0,0,1-1.68.7,8.18,8.18,0,0,1-1.82.2h-7v-8h5.9a15.35,15.35,0,0,1,2,.15,8.47,8.47,0,0,1,2.05.55,4,4,0,0,1,1.57,1.18,3.11,3.11,0,0,1,.63,2A3.71,3.71,0,0,1,181.93,72.72Z"/></g></g></svg>
+            </a>
+        </div>
     </footer>
 </body>
 </html>
