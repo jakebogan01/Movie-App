@@ -802,6 +802,10 @@ select {
   margin-top: 0.25rem;
 }
 
+.mr-\[4\.375rem\] {
+  margin-right: 4.375rem;
+}
+
 .block {
   display: block;
 }
@@ -854,6 +858,14 @@ select {
   height: 4rem;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-\[1\.4rem\] {
+  height: 1.4rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -904,6 +916,10 @@ select {
 
 .w-\[50px\] {
   width: 50px;
+}
+
+.w-\[7rem\] {
+  width: 7rem;
 }
 
 .max-w-\[128rem\] {
@@ -1068,6 +1084,21 @@ select {
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
+.bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#37479B\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 71 155 / var(--tw-bg-opacity));
+}
+
 .bg-cover {
   background-size: cover;
 }
@@ -1117,6 +1148,11 @@ select {
 .py-\[12px\] {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+.py-\[0\.4rem\] {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 
 .pt-6 {
@@ -1271,6 +1307,14 @@ select {
 
 .duration-300 {
   transition-duration: 300ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
 }
 
 .hover\:scale-90:hover {
@@ -1449,6 +1493,10 @@ select {
     padding-left: 1.75rem;
   }
 
+  .md\:pr-\[4\.375rem\] {
+    padding-right: 4.375rem;
+  }
+
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -1579,6 +1627,14 @@ select {
 
   .lg\:pb-10 {
     padding-bottom: 2.5rem;
+  }
+
+  .lg\:pl-\[13\.5625rem\] {
+    padding-left: 13.5625rem;
+  }
+
+  .lg\:pr-\[4\.375rem\] {
+    padding-right: 4.375rem;
   }
 
   .lg\:text-2xl {
