@@ -81,12 +81,12 @@ let getPopularMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center mb-2 mx-3 cursor-pointer transform sm:hover:scale-95 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
                     `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
-                    <h3 class="hidden">${title}</h3>`;
+                    <h3 class="hidden text-white lg:inline mt-1">${title}</h3>`;
                 document.querySelector(".popular-movies").appendChild(li);
             })
         });
@@ -105,12 +105,12 @@ let getComedyMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transform sm:hover:scale-95 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
                     `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
-                    <h3 class="hidden">${title}</h3>`;
+                    <h3 class="hidden text-white lg:inline mt-1">${title}</h3>`;
                 document.querySelector(".comedy-movies").appendChild(li);
             })
         });
@@ -129,12 +129,12 @@ let getAdventureMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transform sm:hover:scale-95 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
                     `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
-                    <h3 class="hidden">${title}</h3>`;
+                    <h3 class="hidden text-white lg:inline mt-1">${title}</h3>`;
                 document.querySelector(".adventure-movies").appendChild(li);
             })
         });
@@ -153,12 +153,12 @@ let getFamilyMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transform sm:hover:scale-95 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
                     `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
-                    <h3 class="hidden">${title}</h3>`;
+                    <h3 class="hidden text-white lg:inline mt-1">${title}</h3>`;
                 document.querySelector(".family-movies").appendChild(li);
             })
         });
@@ -177,12 +177,12 @@ let getScienceFictionMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transform sm:hover:scale-95 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
                     `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
-                    <h3 class="hidden">${title}</h3>`;
+                    <h3 class="hidden text-white lg:inline mt-1">${title}</h3>`;
                 document.querySelector(".science-fiction-movies").appendChild(li);
             })
         });
@@ -201,12 +201,12 @@ let getHorrorMovies = (images) => {
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
                 let className = document.createAttribute("class");
-                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center py-2 px-3 transition-all duration-300";
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transform sm:hover:scale-95 transition-all duration-300";
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
                     `<img class="mt-2 w-full rounded" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
-                    <h3 class="hidden">${title}</h3>`;
+                    <h3 class="hidden text-white lg:inline mt-1">${title}</h3>`;
                 document.querySelector(".horror-movies").appendChild(li);
             })
         });
