@@ -54,6 +54,9 @@
             -ms-user-select: none;
             user-select: none;
         }
+        input[type=search]:focus {
+            width: 100%;
+        }
         .featured-movie {
             background-image: url("/src/img/content/luca.png");
         }
@@ -108,11 +111,35 @@
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-[#30385A]">
-    <main class="relative mx-auto max-w-[128rem] overflow-hidden">
+    <header class="relative mx-auto max-w-[140rem] px-2 sm:px-4 lg:px-8 overflow-hidden">
+        <div class="flex h-16 justify-between">
+            <div class="flex px-2 lg:px-0">
+                <div class="flex flex-shrink-0 items-center">
+                    <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                    <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                </div>
+            </div>
+            <div class="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
+                <div class="w-full max-w-lg lg:max-w-xs">
+                    <label for="search" class="sr-only">Search</label>
+                    <div class="relative">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <!-- Heroicon name: mini/magnifying-glass -->
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <input type="search" id="search" name="search" class="block w-[6.25rem] rounded-md border border-transparent text-sm bg-gray-700 py-2 pl-10 pr-3 leading-5 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-white transition-all duration-300" placeholder="Search..">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="relative mx-auto max-w-[140rem] overflow-hidden">
         <aside class="side-nav hidden lg:block"></aside>
         <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0 group transition-all duration-300 overflow-hidden">
             <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full transform sm:group-hover:scale-105 transition-all duration-300">
-            <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full  z-10" style="background-image: radial-gradient(rgba(48,56,90,0.2), rgba(48,56,90,0.6), rgba(48,56,90,0.9));"></div>
+            <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full  z-10" style="background-image: radial-gradient(rgba(48,56,90,0.2), rgba(48,56,90,0.4), rgba(48,56,90,0.9));"></div>
             <div class="relative 570:absolute top-0 2xl:top-10 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30 transition-all duration-300"></div>
             <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Featured</h2>
         </div>
@@ -725,8 +752,8 @@
             </section>
         </div>
     </main>
-    <footer class="relative -mt-20 bg-no-repeat bg-center bg-cover transition-all duration-300">
-        <div class="flex items-center justify-between mx-auto max-w-[128rem] px-5 md:px-10 py-7 md:py-10 lg:pt-20 lg:pb-10 lg:px-14 transition-all duration-300">
+    <footer class="relative mx-auto max-w-[140rem] -mt-20 bg-no-repeat bg-center bg-cover transition-all duration-300">
+        <div class="flex items-center justify-between mx-auto max-w-[128rem] lg:h-[16.125rem] px-5 md:px-10 py-7 md:py-10 lg:pt-20 lg:pb-10 lg:px-14 transition-all duration-300">
             <svg height="93.206" width="130.808" xmlns="http://www.w3.org/2000/svg" class="group">
                 <g fill="#fff">
                     <text class="opacity-0 group-hover:opacity-100 transition-all duration-300" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="18" font-weight="700" transform="translate(73.808 38.75)"><tspan x="0" y="0">Follow</tspan><tspan x="0" y="22">Us</tspan></text>
