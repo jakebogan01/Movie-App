@@ -6,14 +6,16 @@
  https://api.themoviedb.org/3/search/movie?api_key=<APIKEY>&query=<keyword>
 
  3. To fetch more details about a movie
- https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>508943
+ https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>
  *************/
 
 const APIKEY = '0497a560599e4b1196149db7ecbc29bb'; //TMDB api key
 let baseURL = 'https://api.themoviedb.org/3/';
 let configData = null;
 let baseImageURL = null;
+let titles = "";
 
+//grab base image
 let getConfig = () => {
     let url = "".concat(baseURL, 'configuration?api_key=', APIKEY);
     fetch(url)
@@ -21,54 +23,232 @@ let getConfig = () => {
         .then((data) => {
             baseImageURL = data.images.secure_base_url;
             configData = data.images;
-            getMovies(data);
+            console.table('images:', data);
+            getFeaturedMovie('508943');
+            getPopularMovies(data);
+            getComedyMovies(data);
+            getFamilyMovies(data);
+            getAdventureMovies(data);
+            getScienceFictionMovies(data);
+            getHorrorMovies(data);
         })
         .catch(function (err) {
             alert(err);
         });
 }
 
-let getMovies = (images) => {
+//grab featured movie
+let getFeaturedMovie = (id) => {
+    let url = ''.concat(baseURL, 'movie/', id, '?api_key=', APIKEY);
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Featured Movie:', data);
+                let div = document.createElement("DIV");
+                let releaseDate = data.release_date;
+                let newDate = releaseDate.slice(0, 4);
+                div.innerHTML =
+                    `<img src="https://lumiere-a.akamaihd.net/v1/images/image_2b9e98c7.png" alt="Luca Title" class="w-20 md:w-[6rem] xl:w-[12rem] 2xl:w-[14rem] transition-all duration-300">
+                    <div class="flex space-x-3 mt-2 xl:mt-3 transition-all duration-300">
+                        <span class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DEDE50" class="w-4 h-4"><path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" /></svg>
+                            ${Math.floor(data.vote_average)}0%
+                        </span>
+                        <span>${data.runtime}min</span>
+                        <span>(${newDate})</span>
+                    </div>
+                    <p class="font-semibold my-2 xl:my-5 sm:text-lg lg:text-2xl 2xl:text-3xl max-w-[50.5625rem] xl:max-w-[54.5625rem] transition-all duration-300" style="line-height: 1.7;">${data.overview}</p>
+                    <a href="${data.homepage}" class="inline-flex items-center mt-5 md:mt-8 transition-all duration-300" target="_blank">
+                        <span class="flex justify-center items-center w-[2.5rem] h-[2.5rem] md:w-[3rem] md:h-[3rem] lg:w-20 lg:h-20 rounded-full sm:hover:scale-95 transition-all duration-300" style="background-image: linear-gradient(to bottom right, #71E3CB 20%, #D22FE9);">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 lg:w-[5.5rem] lg:h-[5.5rem] ml-1 lg:ml-2 transition-all duration-300"><path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>
+                        </span>
+                        <span class="ml-2 text-xl font-semibold md:text-2xl lg:text-[2rem] transition-all duration-300">Play</span>
+                    </a>`;
+                document.querySelector(".featured-movie-title").appendChild(div);
+        });
+}
+
+//shows movie details
+let showDetails = (id) => {
+    let url = ''.concat(baseURL, 'movie/', id, '?api_key=', APIKEY);
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Movie Details:', data);
+            let div = document.createElement("DIV");
+            div.innerHTML =
+                `<div x-data="{ open: true }" class="relative" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="z-index: 200;" x-show="open" x-on:keydown.escape.prevent.stop="open = false" x-cloak x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-10" x-transition:leave-end="opacity-0">
+                <div x-show="open" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <div class="fixed inset-0 z-10 overflow-y-auto" x-on:click.stop x-trap.noscroll.inert="open">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0" x-cloak x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                        <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                            <div>
+                                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                                    <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-5">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Payment successful</h3>
+                                    <div class="mt-2">
+                                        <p class="text-sm text-gray-500">${data.title}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 sm:mt-6">
+                                <button x-on:click="open = false" type="button" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Go
+                                    back to dashboard
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            document.body.appendChild(div);
+        });
+}
+
+//grab list of popular movies
+let getPopularMovies = (images) => {
     let url = ''.concat(baseURL, 'movie/popular?api_key=', APIKEY, '&language=en-US');
     fetch(url)
         .then(result => result.json())
         .then((data) => {
-            console.log('images:', images);
-            console.log('data:', data);
-            let titles = "";
-            // for(let i = 0; i < data.results.length; i++){
-            //     let li = document.createElement("LI");
-            //     let bind = document.createAttribute("x-bind");
-            //     bind.value = "disableNextAndPreviousButtons";
-            //     let className = document.createAttribute("className");
-            //     className.value = "flex w-1/3 shrink-0 snap-start flex-col items-center justify-center p-2";
-            //     li.setAttributeNode(bind);
-            //     li.setAttributeNode(className);
-            //     li.innerHTML =
-            //         `<li>${data.results[i].title}</li>`;
-            //     document.querySelector(".output").appendChild(li);
-            // }
-
-            // <li x-bind="disableNextAndPreviousButtons"
-            //     className="flex w-1/3 shrink-0 snap-start flex-col items-center justify-center p-2" role="option">
-            //     <img className="mt-2 w-full" src="https://picsum.photos/400/200?random=1" alt="placeholder image">
-            //         <button x-bind="focusableWhenVisible" className="px-4 py-2 text-sm">
-            //             Do Something
-            //         </button>
-            // </li>
-
-
-            // getMainMovie();
-        })
+            console.table('Popular Movies:', data);
+            data.results.forEach((movie) => {
+                const {title, poster_path, id} = movie;
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center mb-2 mx-3 cursor-pointer transition-all duration-300";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300 sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300 2xl:text-2xl transition-all duration-300">${title}</h3>`;
+                document.querySelector(".popular-movies").appendChild(li);
+            })
+        });
 }
 
-// let getMainMovie = () => {
-//     let url = ''.concat(baseURL, 'movie/508943?api_key=', APIKEY);
-//     fetch(url)
-//         .then(result => result.json())
-//         .then((data) => {
-//             console.log('luca:', data);
-//         })
-// }
+//grab list of comedy movies
+let getComedyMovies = (images) => {
+    let url = ''.concat(baseURL, 'discover/movie?api_key=', APIKEY, '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=35&without_genres=27%2C10751%2C12%2C878&with_watch_monetization_types=flatrate');
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Comedy Movies:', data);
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transition-all duration-300";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
+                document.querySelector(".comedy-movies").appendChild(li);
+            })
+        });
+}
+
+//grab list of adventure movies
+let getAdventureMovies = (images) => {
+    let url = ''.concat(baseURL, 'discover/movie?api_key=', APIKEY, '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=12&without_genres=35%2C10751%2C27%2C878&with_watch_monetization_types=flatrate');
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Adventure Movies:', data);
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transition-all duration-300";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
+                document.querySelector(".adventure-movies").appendChild(li);
+            })
+        });
+}
+
+//grab list of family movies
+let getFamilyMovies = (images) => {
+    let url = ''.concat(baseURL, 'discover/movie?api_key=', APIKEY, '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10751&without_genres=35%2C12%2C27%2C878&with_watch_monetization_types=flatrate');
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Family Movies:', data);
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transition-all duration-300";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
+                document.querySelector(".family-movies").appendChild(li);
+            })
+        });
+}
+
+//grab list of science fiction movies
+let getScienceFictionMovies = (images) => {
+    let url = ''.concat(baseURL, 'discover/movie?api_key=', APIKEY, '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=878&without_genres=35%2C12%2C27%2C10751&with_watch_monetization_types=flatrate');
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Science Fiction Movies:', data);
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transition-all duration-300";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
+                document.querySelector(".science-fiction-movies").appendChild(li);
+            })
+        });
+}
+
+//grab list of horror movies
+let getHorrorMovies = (images) => {
+    let url = ''.concat(baseURL, 'discover/movie?api_key=', APIKEY, '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=27&without_genres=35%2C10751%2C12%2C878&with_watch_monetization_types=flatrate');
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Horror Movies:', data);
+            data.results.forEach((movie) => {
+                const {title, poster_path} = movie;
+                let li = document.createElement("LI");
+                let bind = document.createAttribute("x-bind");
+                bind.value = "disableNextAndPreviousButtons";
+                let className = document.createAttribute("class");
+                className.value = "flex w-[7.6rem] sm:w-[13.75rem] 2xl:w-[20.75rem] shrink-0 snap-start flex-col items-center justify-center my-2 mx-3 cursor-pointer transition-all duration-300";
+                li.setAttributeNode(bind);
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
+                document.querySelector(".horror-movies").appendChild(li);
+            })
+        });
+}
+
 
 document.addEventListener('DOMContentLoaded', getConfig);

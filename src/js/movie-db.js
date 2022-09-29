@@ -68,6 +68,70 @@ let getFeaturedMovie = (id) => {
         });
 }
 
+//shows movie details
+let showDetails = (id) => {
+    let url = ''.concat(baseURL, 'movie/', id, '?api_key=', APIKEY);
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Movie Details:', data);
+            let div = document.createElement("DIV");
+            let elId = document.createAttribute("id");
+            elId.value = "modal";
+            div.setAttributeNode(elId);
+            div.innerHTML =
+                    `<div x-data="{ open: true }" class="relative" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="z-index: 200;" x-show="open" x-on:keydown.escape.prevent.stop="open = false" x-cloak x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-10" x-transition:leave-end="opacity-0">
+                        <div x-show="open" class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+                        <div class="fixed inset-0 z-10 overflow-y-auto" x-on:click.stop x-trap.noscroll.inert="open">
+                            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0" x-cloak x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                                <div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+                                    <div class="relative flex w-full items-center overflow-hidden bg-[#30385A] rounded-md px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-0">
+                                        <button type="button" onclick="remove('modal');" x-on:click="open = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-100 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8 transition-all">
+                                            <span class="sr-only">Close</span>
+                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                                        </button>
+                                        <div class="sm:block lg:grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8 overflow-hidden">
+                                            <div class="sm:hidden lg:block aspect-w-2 aspect-h-3 overflow-hidden rounded-lg lg:rounded-none bg-[#30385A] sm:col-span-4 lg:col-span-5">
+                                                <img src="${'https://image.tmdb.org/t/p/w500/' + data.poster_path}" alt="${data.title}" class="object-cover object-center">
+                                            </div>
+                                            <div class="sm:col-span-8 lg:col-span-7 py-8 pr-8 overflow-y-auto">
+                                                <h2 class="text-3xl font-medium text-white sm:pr-12">${data.title}</h2>
+                                                <section aria-labelledby="information-heading" class="mt-1">
+                                                    <h3 id="information-heading" class="sr-only">Movie information</h3>
+                                                    <div class="mt-4">
+                                                        <h4 class="sr-only">Reviews</h4>
+                                                        <div class="flex items-center">
+                                                            <div class="mr-1 flex items-center">
+                                                                <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" /></svg>
+                                                            </div>
+                                                            <p class="text-sm text-white">
+                                                                3.9
+                                                                <span class="sr-only"> out of 10 stars</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                                <section aria-labelledby="movie-overview" class="mt-8">
+                                                    <h3 id="movie-overview" class="sr-only">Movie overview</h3>
+                                                    <div class="mt-8">
+                                                        <h4 class="text-white mb-3 text-lg font-semibold">Overview</h4>
+                                                        <p class="text-white">${data.overview}</p>
+                                                    </div>
+                                                    <a href="${data.homepage}" target="_blank" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all">
+                                                        View Details
+                                                    </a>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>`;
+            document.body.appendChild(div);
+        });
+}
+
 //grab list of popular movies
 let getPopularMovies = (images) => {
     let url = ''.concat(baseURL, 'movie/popular?api_key=', APIKEY, '&language=en-US');
@@ -76,7 +140,7 @@ let getPopularMovies = (images) => {
         .then((data) => {
             console.table('Popular Movies:', data);
             data.results.forEach((movie) => {
-                const {title, poster_path} = movie;
+                const {title, poster_path, id} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
@@ -85,7 +149,7 @@ let getPopularMovies = (images) => {
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300 sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300 sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
                     <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300 2xl:text-2xl transition-all duration-300">${title}</h3>`;
                 document.querySelector(".popular-movies").appendChild(li);
             })
@@ -100,7 +164,7 @@ let getComedyMovies = (images) => {
         .then((data) => {
             console.table('Comedy Movies:', data);
             data.results.forEach((movie) => {
-                const {title, poster_path} = movie;
+                const {title, poster_path, id} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
@@ -109,7 +173,7 @@ let getComedyMovies = (images) => {
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
                     <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
                 document.querySelector(".comedy-movies").appendChild(li);
             })
@@ -124,7 +188,7 @@ let getAdventureMovies = (images) => {
         .then((data) => {
             console.table('Adventure Movies:', data);
             data.results.forEach((movie) => {
-                const {title, poster_path} = movie;
+                const {title, poster_path, id} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
@@ -133,7 +197,7 @@ let getAdventureMovies = (images) => {
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
                     <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
                 document.querySelector(".adventure-movies").appendChild(li);
             })
@@ -148,7 +212,7 @@ let getFamilyMovies = (images) => {
         .then((data) => {
             console.table('Family Movies:', data);
             data.results.forEach((movie) => {
-                const {title, poster_path} = movie;
+                const {title, poster_path, id} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
@@ -157,7 +221,7 @@ let getFamilyMovies = (images) => {
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
                     <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
                 document.querySelector(".family-movies").appendChild(li);
             })
@@ -172,7 +236,7 @@ let getScienceFictionMovies = (images) => {
         .then((data) => {
             console.table('Science Fiction Movies:', data);
             data.results.forEach((movie) => {
-                const {title, poster_path} = movie;
+                const {title, poster_path, id} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
@@ -181,7 +245,7 @@ let getScienceFictionMovies = (images) => {
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
                     <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
                 document.querySelector(".science-fiction-movies").appendChild(li);
             })
@@ -196,7 +260,7 @@ let getHorrorMovies = (images) => {
         .then((data) => {
             console.table('Horror Movies:', data);
             data.results.forEach((movie) => {
-                const {title, poster_path} = movie;
+                const {title, poster_path, id} = movie;
                 let li = document.createElement("LI");
                 let bind = document.createAttribute("x-bind");
                 bind.value = "disableNextAndPreviousButtons";
@@ -205,12 +269,15 @@ let getHorrorMovies = (images) => {
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
                     <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
                 document.querySelector(".horror-movies").appendChild(li);
             })
         });
 }
 
+let remove = (el) => {
+    document.getElementById(el).remove();
+}
 
 document.addEventListener('DOMContentLoaded', getConfig);
