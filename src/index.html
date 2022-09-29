@@ -20,6 +20,7 @@
     <link href="/dist/app.css" rel="stylesheet">
     <script src="/dist/app.js" defer></script>
     <script src="/src/js/movie-db.js" defer></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.js"></script>
     <style>
         /*[x-cloak] {*/
         /*    display: none !important;*/
@@ -84,7 +85,7 @@
         .project-carousel {
             -ms-overflow-style: none; /* Edge, Internet Explorer */
             scrollbar-width: none; /* Firefox */
-            overflow-y: scroll;
+            /*overflow-y: scroll;*/
         }
         .project-carousel::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
@@ -101,8 +102,8 @@
         <aside class="side-nav hidden lg:block"></aside>
         <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0">
             <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full">
-            <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black bg-opacity-40 z-10"></div>
-            <div class="relative 570:absolute top-0 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30"></div>
+            <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full  z-10" style="background-image: radial-gradient(rgba(48,56,90,0.2), rgba(48,56,90,0.6), rgba(48,56,90,0.9));"></div>
+            <div class="relative 570:absolute top-0 2xl:top-10 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30"></div>
             <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Featured</h2>
         </div>
         <div class="space-y-5 lg:space-y-12 transition-all duration-300">
