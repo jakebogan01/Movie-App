@@ -845,6 +845,10 @@ select {
   height: 13.875rem;
 }
 
+.h-\[260px\] {
+  height: 260px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -879,6 +883,18 @@ select {
 
 .w-1\/3 {
   width: 33.333333%;
+}
+
+.w-\[9\.375rem\] {
+  width: 9.375rem;
+}
+
+.w-\[8\.375rem\] {
+  width: 8.375rem;
+}
+
+.w-\[7\.375rem\] {
+  width: 7.375rem;
 }
 
 .max-w-\[128rem\] {
@@ -940,6 +956,10 @@ select {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .space-y-5 > :not([hidden]) ~ :not([hidden]) {
@@ -1025,6 +1045,10 @@ select {
   padding: 0.5rem;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -1038,6 +1062,41 @@ select {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.px-14 {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.py-7 {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
 }
 
 .pt-6 {
@@ -1066,6 +1125,14 @@ select {
 
 .pb-44 {
   padding-bottom: 11rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
 }
 
 .text-left {
@@ -1223,6 +1290,10 @@ select {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
+  .sm\:hover\:opacity-100:hover {
+    opacity: 1;
+  }
+
   .group:hover .sm\:group-hover\:scale-95 {
     --tw-scale-x: .95;
     --tw-scale-y: .95;
@@ -1253,6 +1324,21 @@ select {
 
   .md\:p-10 {
     padding: 2.5rem;
+  }
+
+  .md\:px-7 {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  .md\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .md\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .md\:pl-7 {
@@ -1338,12 +1424,25 @@ select {
     padding-right: 0.75rem;
   }
 
+  .lg\:px-14 {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+
   .lg\:pl-\[14\.25rem\] {
     padding-left: 14.25rem;
   }
 
   .lg\:pt-16 {
     padding-top: 4rem;
+  }
+
+  .lg\:pt-20 {
+    padding-top: 5rem;
+  }
+
+  .lg\:pb-10 {
+    padding-bottom: 2.5rem;
   }
 
   .lg\:text-2xl {
