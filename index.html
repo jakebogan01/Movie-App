@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="Modern movie API app">
+    <meta name="msapplication-TileColor" content="#30385A">
+    <meta name="theme-color" content="#30385A">
+    <meta name="description" content="Modern movie API app template">
     <meta property="og:title" content="Movie App Template">
     <meta property="og:type" content="Article">
     <meta property="og:url" content="https://jakebogan.dev">
@@ -14,13 +14,12 @@
     <meta property="og:description" content="Movie App Template">
     <meta property="og:site_name" content="Movie App Template">
     <title>Movie App Template</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link href="/dist/app.css" rel="stylesheet">
-    <script src="/dist/app.js" defer></script>
-    <script src="/src/js/movie-db.js" defer></script>
-    <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="dist/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="dist/img/favicon-16x16.png">
+    <link href="dist/app.min.css" rel="stylesheet">
+    <script src="dist/app.js" defer></script>
+    <script src="dist/js/movie-db.js" defer></script>
     <style>
         [x-cloak] {
             display: none !important;
@@ -47,6 +46,15 @@
             background: #ffffff;
             border: 0.1875rem solid #30385A;
         }
+        .search-box::-webkit-scrollbar{
+            width: 0 !important;
+            background-color: transparent;
+        }
+        .search-box::-webkit-scrollbar-thumb {
+            border-radius: 0;
+            background: transparent;
+            border: none;
+        }
         h1,h2,h3,h4,h5,p,span {
             -webkit-user-select: none;
             -khtml-user-select: none;
@@ -58,7 +66,7 @@
             width: 100%;
         }
         .featured-movie {
-            background-image: url("/src/img/content/luca.png");
+            background-image: url("dist/img/content/luca.webp");
         }
         .featured-movie:before {
             content: '';
@@ -88,7 +96,6 @@
         .project-carousel {
             -ms-overflow-style: none; /* Edge, Internet Explorer */
             scrollbar-width: none; /* Firefox */
-            /*overflow-y: scroll;*/
         }
         .project-carousel::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
@@ -105,13 +112,13 @@
         @media (min-width: 1024px) {
             footer {
                 background-color: transparent;
-                background-image: url('/src/img/content/footer.svg');
+                background-image: url('dist/img/content/footer.svg');
             }
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden bg-[#30385A]">
-    <header class="relative mx-auto max-w-[140rem] bg-[#37479B] px-2 sm:px-4 lg:px-8 overflow-hidden">
+<body class="antialiased overflow-x-hidden bg-[#30385A]" onLoad="window.scroll(0, 64)">
+    <header class="relative mx-auto max-w-[140rem] bg-[#37479B] px-2 sm:px-4 lg:px-8">
         <div class="flex h-16 justify-between">
             <div class="flex px-2 lg:pl-[13.5625rem] transition-all duration-300">
                 <div class="flex flex-shrink-0 items-center">
@@ -120,14 +127,17 @@
                     </a>
                 </div>
             </div>
-            <div class="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
-                <div class="w-full max-w-lg lg:max-w-xs">
+            <div class="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end" x-data="{showSearch: false}">
+                <div class="relative w-full max-w-lg lg:max-w-xs" @click.away="showSearch = true" @close.stop="showSearch = true">
                     <label for="search" class="sr-only">Search</label>
-                    <div class="relative">
+                    <form id="form" class="relative">
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" /></svg>
                         </div>
-                        <input type="search" id="search" name="search" class="block w-[7rem] rounded-md border border-transparent text-sm bg-gray-100 py-[0.4rem] pl-10 pr-3 leading-5 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-white transition-all duration-300" placeholder="Search..">
+                        <input @click="showSearch = false" onblur="this.value=''" onfocus="this.value=''" type="search" id="search" name="search" class="block w-[7rem] rounded-md border border-transparent text-sm bg-gray-100 py-[0.4rem] pl-10 pr-3 leading-5 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-white transition-all duration-300" placeholder="Search..">
+                    </form>
+                    <div x-show="!showSearch" x-cloak class="search-box absolute top-11 right-0 bg-gray-100 max-h-[17rem] w-[90vw] md:w-full rounded-md shadow-2xl z-50 overflow-x-hidden overflow-y-auto">
+                        <ul class="search-results"></ul>
                     </div>
                 </div>
             </div>
@@ -136,7 +146,7 @@
     <main class="relative mx-auto max-w-[140rem] overflow-hidden">
         <aside class="side-nav hidden lg:block"></aside>
         <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0 group transition-all duration-300 overflow-hidden">
-            <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full transform sm:group-hover:scale-105 transition-all duration-1000">
+            <img src="dist/img/content/luca.webp" alt="Luca" class="hidden 570:block relative w-full transform sm:group-hover:scale-105 transition-all duration-1000">
             <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full  z-10" style="background-image: radial-gradient(rgba(48,56,90,0.2), rgba(48,56,90,0.4), rgba(48,56,90,0.9));"></div>
             <div class="relative 570:absolute top-0 2xl:top-10 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30 transition-all duration-300"></div>
             <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Featured</h2>

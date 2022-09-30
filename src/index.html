@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="Modern movie API app">
+    <meta name="msapplication-TileColor" content="#30385A">
+    <meta name="theme-color" content="#30385A">
+    <meta name="description" content="Modern movie API app template">
     <meta property="og:title" content="Movie App Template">
     <meta property="og:type" content="Article">
     <meta property="og:url" content="https://jakebogan.dev">
@@ -20,7 +20,6 @@
     <link href="/dist/app.css" rel="stylesheet">
     <script src="/dist/app.js" defer></script>
     <script src="/src/js/movie-db.js" defer></script>
-    <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.js"></script>
     <style>
         [x-cloak] {
             display: none !important;
@@ -67,7 +66,7 @@
             width: 100%;
         }
         .featured-movie {
-            background-image: url("/src/img/content/luca.png");
+            background-image: url("/src/img/content/luca.webp");
         }
         .featured-movie:before {
             content: '';
@@ -97,7 +96,6 @@
         .project-carousel {
             -ms-overflow-style: none; /* Edge, Internet Explorer */
             scrollbar-width: none; /* Firefox */
-            /*overflow-y: scroll;*/
         }
         .project-carousel::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
@@ -148,7 +146,7 @@
     <main class="relative mx-auto max-w-[140rem] overflow-hidden">
         <aside class="side-nav hidden lg:block"></aside>
         <div class="featured-movie relative bg-no-repeat bg-center bg-cover pt-6 pb-20 570:p-0 group transition-all duration-300 overflow-hidden">
-            <img src="/src/img/content/luca.png" alt="Luca" class="hidden 570:block relative w-full transform sm:group-hover:scale-105 transition-all duration-1000">
+            <img src="/src/img/content/luca.webp" alt="Luca" class="hidden 570:block relative w-full transform sm:group-hover:scale-105 transition-all duration-1000">
             <div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full  z-10" style="background-image: radial-gradient(rgba(48,56,90,0.2), rgba(48,56,90,0.4), rgba(48,56,90,0.9));"></div>
             <div class="relative 570:absolute top-0 2xl:top-10 left-0 w-full featured-movie-title p-5 md:p-10 lg:pl-[14.25rem] lg:pt-16 text-white z-30 transition-all duration-300"></div>
             <h2 class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 left-12 text-white font-semibold text-2xl" style="z-index: 105;">Featured</h2>
