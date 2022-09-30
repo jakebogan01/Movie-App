@@ -9,6 +9,8 @@
  https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>
  *************/
 
+window.scrollTo(0, 64);
+
 const APIKEY = '0497a560599e4b1196149db7ecbc29bb';
 let baseURL = 'https://api.themoviedb.org/3/';
 let configData = null;

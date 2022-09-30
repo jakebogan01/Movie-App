@@ -791,9 +791,6 @@ select {
 .h-16 {
   height: 4rem;
 }
-.h-\[1\.4rem\] {
-  height: 1.4rem;
-}
 .h-5 {
   height: 1.25rem;
 }
@@ -820,9 +817,6 @@ select {
 }
 .min-h-full {
   min-height: 100%;
-}
-.w-auto {
-  width: auto;
 }
 .w-full {
   width: 100%;
@@ -1086,14 +1080,14 @@ select {
 .pr-3 {
   padding-right: 0.75rem;
 }
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
 .pt-6 {
   padding-top: 1.5rem;
 }
 .pb-20 {
   padding-bottom: 5rem;
-}
-.pb-40 {
-  padding-bottom: 10rem;
 }
 .pt-14 {
   padding-top: 3.5rem;
@@ -1460,6 +1454,11 @@ select {
     padding: 1.5rem;
   }
 
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .md\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -1502,8 +1501,8 @@ select {
     grid-column: span 7 / span 7;
   }
 
-  .lg\:ml-6 {
-    margin-left: 1.5rem;
+  .lg\:ml-44 {
+    margin-left: 11rem;
   }
 
   .lg\:mt-32 {
@@ -1574,10 +1573,6 @@ select {
     max-width: 56rem;
   }
 
-  .lg\:justify-end {
-    justify-content: flex-end;
-  }
-
   .lg\:gap-x-8 {
     -moz-column-gap: 2rem;
          column-gap: 2rem;
@@ -1617,8 +1612,8 @@ select {
     padding-right: 3.5rem;
   }
 
-  .lg\:pl-\[13\.5625rem\] {
-    padding-left: 13.5625rem;
+  .lg\:pb-0 {
+    padding-bottom: 0px;
   }
 
   .lg\:pl-\[14\.25rem\] {
@@ -1627,6 +1622,10 @@ select {
 
   .lg\:pt-16 {
     padding-top: 4rem;
+  }
+
+  .lg\:pb-40 {
+    padding-bottom: 10rem;
   }
 
   .lg\:pt-20 {
