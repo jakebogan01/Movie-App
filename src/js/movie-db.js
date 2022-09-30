@@ -37,6 +37,47 @@ let getConfig = () => {
         });
 }
 
+//search
+document.getElementById('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let userInput = document.getElementById('search').value.trim();
+    if (document.querySelector('.search-results').hasChildNodes()) {
+        document.querySelector('.search-results').innerHTML = '';
+    }
+    if(userInput !== '') {
+        searchMovie(userInput);
+    }
+});
+document.getElementById('search').addEventListener('focus', (e) => {
+    e.preventDefault();
+    if (document.querySelector('.search-results').hasChildNodes()) {
+        document.querySelector('.search-results').innerHTML = '';
+    }
+});
+
+// search movie by search word
+let searchMovie = (movie) => {
+    let url = ''.concat(baseURL, 'search/movie', '?api_key=', APIKEY, '&query=', movie);
+    fetch(url)
+        .then(result => result.json())
+        .then((data) => {
+            console.table('Searched Movie:', data);
+            data.results.forEach((searchedMovie) => {
+                const {title, poster_path, id} = searchedMovie;
+                let li = document.createElement("LI");
+                let className = document.createAttribute("class");
+                className.value = "bg-gray-100 hover:bg-gray-300 cursor-pointer transition-all";
+                li.setAttributeNode(className);
+                li.innerHTML =
+                    `<span onclick="showDetails(${id});" class="block my-2 flex items-center space-x-3 py-2 px-2 max-h-20">
+                         <img src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}" class="w-12 rounded-md">
+                         <p class="font-semibold text-lg">${title}</p>
+                     </span>`;
+                document.querySelector(".search-results").appendChild(li);
+            })
+        });
+}
+
 //grab featured movie
 let getFeaturedMovie = (id) => {
     let url = ''.concat(baseURL, 'movie/', id, '?api_key=', APIKEY);
