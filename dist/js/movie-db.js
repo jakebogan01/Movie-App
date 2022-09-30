@@ -195,7 +195,7 @@ let getMovieByGenre = (elClass, path, genre, withoutGenre) => {
                 li.setAttributeNode(bind);
                 li.setAttributeNode(className);
                 li.innerHTML =
-                    `<img onclick="showDetails(${id});" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
+                    `<img onclick="showDetails(${id});" onerror="this.style.display='none';" class="mt-2 w-full rounded sm:hover:scale-95 transition-all duration-300" src="${'https://image.tmdb.org/t/p/w500/' + poster_path}" alt="${title}">
                     <h3 class="hidden text-white lg:inline mt-1 2xl:text-2xl transition-all duration-300">${title}</h3>`;
                 document.querySelector(elClass).appendChild(li);
             })
